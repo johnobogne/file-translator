@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def client_keys(request) :
     if request == 'client_id' :
         return 'PLACE YOUR CLIENT ID HERE'
