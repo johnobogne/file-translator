@@ -3,6 +3,7 @@ import ssl
 import json
 import api_keys as keys
 import os
+import webbrowser
 
 # Read JSON file
 file_name = input('Filename: ')
@@ -12,8 +13,10 @@ print('Reading file', file_name)
 
 # Connect to API
 print('Connecting to Papago Translation API...')
-srcLanguage = 'ko'
-targLanguage = 'en'
+print('See browser for supported languages.')
+webbrowser.open_new('https://bit.ly/2Tkq4f7')
+srcLanguage = input('Source Language: ')
+targLanguage = input('Target Language: ')
 url = 'https://openapi.naver.com/v1/papago/n2mt'
 request = urllib.request.Request(url)
 request.add_header("X-Naver-Client-Id", keys.client_keys('client_id'))
@@ -22,13 +25,11 @@ print('Connected to API.')
 
 # Exchange data with API
 translations = {}
-print('Source Language:', srcLanguage)
-print('Target Language:', targLanguage)
 print('Translating...')
 
 for word in json_file['korean-words'] :
     encoded_text = urllib.parse.quote(word)
-    data = 'source=' + srcLanguage + '&target=' + targLanguage + '&text=' + encoded_text
+    data = 'source=' + srcLanguage.lower() + '&target=' + targLanguage.lower() + '&text=' + encoded_text
     response = urllib.request.urlopen(request, data=data.encode("utf-8"))
     rescode = response.getcode()
 
