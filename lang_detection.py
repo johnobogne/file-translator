@@ -7,8 +7,8 @@ def getLangCode(text) :
     data = 'query=' + encoded_text
     url = 'https://openapi.naver.com/v1/papago/detectLangs'
     request = urllib.request.Request(url)
-    request.add_header("X-Naver-Client-Id", keys.lang_det_keys('client_id'))
-    request.add_header("X-Naver-Client-Secret", keys.lang_det_keys('client_secret'))
+    request.add_header("X-Naver-Client-Id", keys.lang_det('client_id'))
+    request.add_header("X-Naver-Client-Secret", keys.lang_det('client_secret'))
     response = urllib.request.urlopen(request, data = data.encode('UTF-8'))
     rescode = response.getcode()
     if(rescode==200):
